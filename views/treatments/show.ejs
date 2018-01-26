@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+
+<h1><%= treatment.date %></h1>
+<h2><%= treatment.chemo %></h2>
+<h3><%= treatment.medication %></h1>
+
+<% treatment.comments.forEach(function(comment){ %>
+  <p>
+  <strong><%= comment.author %></strong> - <%= comment.text %>
+  </p>
+<% }) %>
+
+<p>
+  <a href="/treatments/<%= treatment._id %>/comments/new" class="btn btn-primary">New comment</a>
+  <!-- This is the auto gen Mongo ID-->
+</p>
+
+<% include ../partials/footer %>

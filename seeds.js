@@ -10,12 +10,12 @@ var data = [
   },
   {
     date: "February",
-    chemo: "Chemo",
+    chemo: "MoreChemo",
     medication: "Herceptin"
   },
   {
     date: "March",
-    chemo: "Chemo",
+    chemo: "ChemoAgain",
     medication: "Herceptin"
   }
 ];

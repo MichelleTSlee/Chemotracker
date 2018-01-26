@@ -10,6 +10,8 @@ var treatmentSchema = new mongoose.Schema({
       ref: "Comment"
     }
   ]
+}, {
+  usePushEach: true
 });
 
 module.exports = mongoose.model("Treatment", treatmentSchema);
