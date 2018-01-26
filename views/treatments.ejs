@@ -1,0 +1,43 @@
+<% include partials/header %>
+<div class="container">
+  <header class="jumbotron">
+    <h1>Welcome to ChemoTracker</h1>
+    <p>A place for you to track your chemo treatment, bloods, side effects and diet. </p>
+    <p>
+      <a class="btn btn-primary btn-lg" href="/treatments/new">
+       New treatment? Click here</a>
+    </p>
+  </div>
+  </header>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h3> Most Recent Treatments </h3>
+
+    </div>
+  </div>
+
+  <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+      <% treatment.forEach(function(session){ %>
+      <div class="col-md-3 col-sm-6">
+        <div class="thumbnail">
+        <h4> <%= session.date  %> </h4>
+
+          <div class="caption">
+            <h4> <%= session.chemo  %> </h4>
+          </div>
+          <p>
+            <a href="/treatments/<%= session._id %>" class="btn btn-primary">More Info</a>
+            <!-- This is the auto gen Mongo ID-->
+          </p>
+        </div>
+
+
+</div>
+    <% }); %>
+  </div>
+</div>
+
+
+
+<% include partials/footer %>
