@@ -6,12 +6,13 @@ var express = require("express"),
   Comment = require("./models/comment"),
   seedDB = require("./seeds");
 
-seedDB();
 
 mongoose.connect("mongodb://localhost/chemo", {useMongoClient: true});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + "/public"));
 
+seedDB();
 
 
 app.get("/", function(req, res){
@@ -31,10 +32,10 @@ app.get("/treatments", function(req, res){
 
 //CREATE route - add new developer to database
 app.post("/treatments", function(req, res){
+   var image = req.body.image;
    var date = req.body.date;
-   var chemo = req.body.chemo;
-   var medication = req.body.medication;
-   var newTreatment = {date: date, chemo: chemo, medication: medication}
+   var description = req.body.description;
+   var newTreatment = {image: image, date: date, description: description}
    Treatment.create(newTreatment, function(err, newlyCreated){
    if(err){
       console.log(err);

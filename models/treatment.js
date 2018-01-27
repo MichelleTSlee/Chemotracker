@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var treatmentSchema = new mongoose.Schema({
+  image: String,
   date: String,
-  chemo: String,
-  medication: String,
+  description: String,
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

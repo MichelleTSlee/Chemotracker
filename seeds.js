@@ -4,19 +4,20 @@ var Comment = require("./models/comment");
 
 var data = [
   {
+
+    image: "https://cdn.pixabay.com/photo/2017/09/07/10/25/logo-2724481__340.png",
     date: "January",
-    chemo: "Chemo",
-    medication: "Herceptin"
+    description: "Herceptin & Chemo"
   },
   {
+    image: "https://cdn.pixabay.com/photo/2017/09/26/18/31/abstract-2789690__340.png",
     date: "February",
-    chemo: "MoreChemo",
-    medication: "Herceptin"
+    description: "Herceptin & Chemo"
   },
   {
+    image: "https://cdn.pixabay.com/photo/2017/10/16/22/10/dna-2858778__340.png",
     date: "March",
-    chemo: "ChemoAgain",
-    medication: "Herceptin"
+    description: "Herceptin & Chemo"
   }
 ];
 
@@ -40,7 +41,7 @@ function seedDB() {
         //Add comment
          Comment.create(
           {
-             text: "This treatment sucked!",
+             text: "Aching bones",
              author: "Michelle"
            }, function(err, comment){
              if(err){
