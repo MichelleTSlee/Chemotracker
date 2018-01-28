@@ -25,12 +25,13 @@ var data = [
 function seedDB() {
   //Remove all treatments
   Treatment.remove({}, function(err){
-    if(err){
-      console.log(err);
-    } else {
-      console.log("Removed all treatments!");
-    }
+      if(err){
+        console.log(err);
+      } else {
+        console.log("Removed all treatments!");
+    };
   });
+
   //add a few treatments
   data.forEach(function(seed){
     Treatment.create(seed, function(err, treatment){
@@ -38,6 +39,12 @@ function seedDB() {
         console.log(err);
       } else {
         console.log("Saved a treatment");
+        Comment.remove({}, function(err){
+          if(err){
+            console.log(err);
+          } else {
+            console.log("Removed all comments!");
+          };
         //Add comment
          Comment.create(
           {
@@ -47,14 +54,16 @@ function seedDB() {
              if(err){
                console.log(err);
              } else {
-               treatment.comments.push(comment);
+               treatment.comments.push(comment._id);
                treatment.save();
                console.log("Created a new comment");
              }
            });
-      }
-    });
+        });
+    }
   });
+ });
 };
+
 
 module.exports = seedDB;

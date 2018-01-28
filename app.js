@@ -2,103 +2,48 @@ var express = require("express"),
   app = express(),
   mongoose = require('mongoose'),
   bodyParser = require("body-parser"),
+  passport = require("passport"),
+  LocalStrategy = require("passport-local"),
   Treatment = require("./models/treatment"),
   Comment = require("./models/comment"),
+  User = require("./models/user"),
   seedDB = require("./seeds");
 
+//Requiring Routes
+  var commentRoutes = require("./routes/comments"),
+      treatmentsRoutes = require("./routes/treatments"),
+      indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/chemo", {useMongoClient: true});
+
+mongoose.connect("mongodb://localhost/chemo");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
-
 seedDB();
 
+//======================
+//PASSPORT CONFIGURATION
+//======================
+app.use(require("express-session")({
+  secret: "Pancakes are the best!",
+  resave: false,
+  saveUninitialized: false
+}));
 
-app.get("/", function(req, res){
-  res.render("landing");
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
 });
 
-//INDEX - get all developers
-app.get("/treatments", function(req, res){
-  Treatment.find({}, function(err, treatment){
-    if(err){
-      console.log(err);
-    } else {
-      res.render("treatments/treatments", {treatment: treatment});
-    }
-  });
-});
-
-//CREATE route - add new developer to database
-app.post("/treatments", function(req, res){
-   var image = req.body.image;
-   var date = req.body.date;
-   var description = req.body.description;
-   var newTreatment = {image: image, date: date, description: description}
-   Treatment.create(newTreatment, function(err, newlyCreated){
-   if(err){
-      console.log(err);
-    } else {
-      res.redirect("/treatments");
-    }
- });
-});
-
-//NEW - show form to create new user. Has to be above the :id route below
-app.get("/treatments/new", function(req, res){
-  res.render("treatments/new.ejs");
-});
-
-//SHOW - get more info about a specific developer
-app.get("/treatments/:id", function(req, res){
-  //Find Treatment by ID
-  Treatment.findById(req.params.id).populate("comments").exec( function(err, foundTreatment){
-    if(err){
-       console.log(err);
-     } else {
-       console.log(foundTreatment);
-       res.render("treatments/show", {treatment: foundTreatment});
-    }
- });
-});
-
-
-//COMMENTS ROUTES
-//========================
-
-//NEW - show form to create new comment.
-app.get("/treatments/:id/comments/new", function(req, res){
-  //Find treatment by ID
-  Treatment.findById(req.params.id, function(err, treatment){
-    if(err){
-      console.log(err);
-    } else {
-      res.render("comments/new", {treatment: treatment});
-    }
-  })
-});
-
-////CREATE route - add new comment to database
-app.post("/treatments/:id/comments", function(req, res){
-  //Find treatment by ID
-  Treatment.findById(req.params.id, function(err, treatment){
-    if(err){
-      console.log(err);
-      res.redirect("/treatments");
-    } else {
-      Comment.create(req.body.comment, function(err, comment){
-        if(err){
-          console.log(err)
-        } else {
-          treatment.comments.push(comment);
-          treatment.save();
-          res.redirect("/treatments/" +  treatment._id);
-        }
-      });
-    }
-  });
-});
+app.use("/", indexRoutes);
+app.use("/treatments", treatmentsRoutes);
+app.use("/treatments/:id/comments", commentRoutes);
 
 
 app.listen(3000, function(){
