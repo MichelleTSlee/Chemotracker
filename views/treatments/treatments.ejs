@@ -11,29 +11,20 @@
   </div>
   </header>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <h3> Most Recent Sessions </h3>
-
-    </div>
-  </div>
-
   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
       <% treatment.forEach(function(session){ %>
       <div class="col-md-3 col-sm-6">
         <div class="thumbnail">
-
-        <img src="<%= session.image %>" %> >
-        <h4> <%= session.date  %> </h4>
-
-          <div class="caption">
-            <h4> <%= session.description  %> </h4>
-          </div>
+          <img src= "https://cdn.pixabay.com/photo/2017/09/07/10/25/logo-2724481__340.png">
+          <h2> <%= session.date  %> </h2>
           <p>
-            <a href="/treatments/<%= session._id %>" class="btn btn-primary">More Info</a>
-            <!-- This is the auto gen Mongo ID-->
+              <a href="/treatments/<%= session._id %>"  class="btn btn-primary">More Info</a>
           </p>
-        </div>
+          <p>
+            <a href="/treatments/<%= session._id %>"  class="btn btn-success">Record side effects >></a>
+          </p>
+
+          </div>
 
 
 </div>

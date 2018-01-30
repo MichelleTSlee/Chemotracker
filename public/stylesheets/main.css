@@ -1,6 +1,10 @@
 
 .thumbnail img {
-  width:100%;
+  width:25%;
+}
+
+.thumbnail_full img {
+  width:25%;
 }
 
 .thumbnail {
@@ -9,4 +13,8 @@
 
 .thumbnail .caption-full {
   padding: 9px;
+}
+
+h4 {
+  color: #46A3DE;
 }

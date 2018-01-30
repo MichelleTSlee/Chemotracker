@@ -11,22 +11,23 @@
       </div>
       <div class="col-md-9">
         <div class="thumbnail">
-          <img class="responsive" src="<%= treatment.image %>" />
+            <img src= "https://cdn.pixabay.com/photo/2017/09/07/10/25/logo-2724481__340.png">
           <div class="caption-full">
-            <h4 class="pull-right">3 hours</h4>
-            <h4><a><%= treatment.date %></a></h4>
-            <p><%= treatment.description %></p>
-         </div>
+            <h4>Date: <%= treatment.date %></h4>
+              <h5>Neutrophils: <%= treatment.neutrophils %></h3>
+            <h5>Treatment: <%= treatment.description %></h3>
+              <a class="btn btn-warning" href="/treatments/<%= treatment._id %>/edit">Edit</a>
+          </div>
         </div>
         <div class="well">
           <div class="text-right">
-              <a href="/treatments/<%= treatment._id %>/comments/new" class="btn btn-success">Record side effect</a>
+              <a href="/treatments/<%= treatment._id %>/comments/new" class="btn btn-success">Add side effect</a>
           </div>
           <hr />
           <% treatment.comments.forEach(function(comment){ %>
             <div class="row">
               <div class="col-md-12">
-                <span class="pull-right">10 days ago</span>
+                <span class="pull-right"><%=comment.date %></span>
                 <p>
                   <%= comment.text %>
                 </p>

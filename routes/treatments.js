@@ -16,22 +16,27 @@ router.get("/", function(req, res){
 });
 
 //CREATE route - add new treatment to database
-router.post("/", function(req, res){
-   var image = req.body.image;
+router.post("/", isLoggedIn, function(req, res){
+   var neutrophils = req.body.neutrophils;
    var date = req.body.date;
    var description = req.body.description;
-   var newTreatment = {image: image, date: date, description: description}
+   var author = {
+     id: req.user._id,
+     username:  req.user.username
+   };
+   var newTreatment = {date: date, description: description, neutrophils: neutrophils, author: author};
    Treatment.create(newTreatment, function(err, newlyCreated){
    if(err){
       console.log(err);
     } else {
+      console.log(newlyCreated);
       res.redirect("/treatments");
     }
  });
 });
 
 //NEW - show form to create new treatment.
-router.get("/new", function(req, res){
+router.get("/new", isLoggedIn, function(req, res){
   res.render("treatments/new.ejs");
 });
 
@@ -42,10 +47,32 @@ router.get("/:id", function(req, res){
     if(err){
        console.log(err);
      } else {
-       console.log(foundTreatment);
        res.render("treatments/show", {treatment: foundTreatment});
     }
  });
+});
+
+//EDIT Treatment route
+router.get("/:id/edit", function(req, res){
+  Treatment.findById(req.params.id, function(err, foundTreatment){
+    if(err){
+      res.redirect("/treatments");
+    } else {
+      res.render("treatments/edit", {treatment: foundTreatment});
+    }
+  });
+});
+
+//UPDATE route
+router.put("/:id", function(req, res){
+  //find&update the correct treatment
+  Treatment.findByIdAndUpdate(req.params.id, req.body.treatment, function(err, updatedTreatment){
+    if(err){
+      res.redirect("/treatments");
+    } else {
+      res.redirect("/treatments/" + req.params.id);
+    }
+  });
 });
 
 //=========================

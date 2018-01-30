@@ -28,9 +28,14 @@ router.post("/", isLoggedIn, function(req, res){
         if(err){
           console.log(err)
         } else {
+          //add username & id to comment
+          comment.author.id = req.user_id;
+          comment.author.username = req.user.username;
+          //save comment
+          comment.save();
           treatment.comments.push(comment._id);
           treatment.save();
-          res.redirect("/treatments");
+          res.redirect("/treatments/" + treatment._id);
         }
       });
     }
@@ -38,7 +43,7 @@ router.post("/", isLoggedIn, function(req, res){
 });
 
 //=========================
-//CHECK if User Logged In
+//CHECK if User Logged In - Middleware
 //==========================
 
   function isLoggedIn(req, res, next){

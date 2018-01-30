@@ -2,24 +2,24 @@ var mongoose = require("mongoose");
 var Treatment = require("./models/treatment");
 var Comment = require("./models/comment");
 
-var data = [
-  {
-
-    image: "https://cdn.pixabay.com/photo/2017/09/07/10/25/logo-2724481__340.png",
-    date: "January",
-    description: "Herceptin & Chemo"
-  },
-  {
-    image: "https://cdn.pixabay.com/photo/2017/09/26/18/31/abstract-2789690__340.png",
-    date: "February",
-    description: "Herceptin & Chemo"
-  },
-  {
-    image: "https://cdn.pixabay.com/photo/2017/10/16/22/10/dna-2858778__340.png",
-    date: "March",
-    description: "Herceptin & Chemo"
-  }
-];
+// var data = [
+//   {
+//
+//     date: "January 2018",
+//     neutrophils: "1.4",
+//     description: "Herceptin and Chemotherapy"
+//   },
+//   {
+//     date: "February 2018",
+//     neutrophils: "1.4",
+//     description: "Herceptin and Chemotherapy"
+//   },
+//   {
+//     date: "March 2018",
+//     neutrophils: "1.4",
+//     description: "Herceptin and Chemotherapy"
+//   }
+// ];
 
 
 function seedDB() {
@@ -31,38 +31,13 @@ function seedDB() {
         console.log("Removed all treatments!");
     };
   });
-
-  //add a few treatments
-  data.forEach(function(seed){
-    Treatment.create(seed, function(err, treatment){
+  Comment.remove({}, function(err){
       if(err){
         console.log(err);
       } else {
-        console.log("Saved a treatment");
-        Comment.remove({}, function(err){
-          if(err){
-            console.log(err);
-          } else {
-            console.log("Removed all comments!");
-          };
-        //Add comment
-         Comment.create(
-          {
-             text: "Aching bones",
-             author: "Michelle"
-           }, function(err, comment){
-             if(err){
-               console.log(err);
-             } else {
-               treatment.comments.push(comment._id);
-               treatment.save();
-               console.log("Created a new comment");
-             }
-           });
-        });
-    }
+        console.log("Removed all comments!");
+    };
   });
- });
 };
 
 
