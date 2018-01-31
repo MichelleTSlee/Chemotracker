@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router({mergeParams: true});
 var Treatment = require("../models/treatment");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
 
 
 //INDEX - get all treatments
@@ -16,7 +17,7 @@ router.get("/", function(req, res){
 });
 
 //CREATE route - add new treatment to database
-router.post("/", isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
    var neutrophils = req.body.neutrophils;
    var date = req.body.date;
    var description = req.body.description;
@@ -29,14 +30,13 @@ router.post("/", isLoggedIn, function(req, res){
    if(err){
       console.log(err);
     } else {
-      console.log(newlyCreated);
       res.redirect("/treatments");
     }
  });
 });
 
 //NEW - show form to create new treatment.
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
   res.render("treatments/new.ejs");
 });
 
@@ -53,18 +53,14 @@ router.get("/:id", function(req, res){
 });
 
 //EDIT Treatment route
-router.get("/:id/edit", function(req, res){
-  Treatment.findById(req.params.id, function(err, foundTreatment){
-    if(err){
-      res.redirect("/treatments");
-    } else {
-      res.render("treatments/edit", {treatment: foundTreatment});
-    }
+router.get("/:id/edit", middleware.checkTreatmentOwnership, function(req, res){
+    Treatment.findById(req.params.id, function(err, foundTreatment){
+        res.render("treatments/edit", {treatment: foundTreatment});
   });
 });
 
 //UPDATE route
-router.put("/:id", function(req, res){
+router.put("/:id", middleware.checkTreatmentOwnership, function(req, res){
   //find&update the correct treatment
   Treatment.findByIdAndUpdate(req.params.id, req.body.treatment, function(err, updatedTreatment){
     if(err){
@@ -75,16 +71,17 @@ router.put("/:id", function(req, res){
   });
 });
 
-//=========================
-//CHECK if User Logged In
-//==========================
-
-  function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-      return next();
+//DESTROY route
+router.delete("/:id", middleware.checkTreatmentOwnership, function(req, res){
+  Treatment.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      res.redirect('/treatments');
+    } else {
+      res.redirect('/treatments');
     }
-    res.redirect("/login");
-  };
+  });
+});
+
 
 
 module.exports = router;
