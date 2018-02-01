@@ -17,9 +17,10 @@ var express = require("express"),
       indexRoutes = require("./routes/index");
 
 
-mongoose.connect(process.env.DATABASEURL);
+var url = process.env.DATABASEURL || "mongodb://localhost/chemo"
+mongoose.connect(url);
 
-
+var port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -69,6 +70,6 @@ app.use("/treatments/:id/comments", commentRoutes);
 // //======================
 // //HEROKU CONFIGURATION
 // //======================
-app.listen(process.env.PORT, process.env.IP, function () {
+app.listen(port, function () {
     console.log("Heroku ChemoTracker Server listening!!!");
 });
