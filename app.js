@@ -17,8 +17,8 @@ var express = require("express"),
       indexRoutes = require("./routes/index");
 
 
-//mongoose.connect("mongodb://localhost/chemo");
-mongoose.connect("mongodb://Bravetank:Chhotdogs22@ds121088.mlab.com:21088/chemotracker");
+mongoose.connect(process.env.DATABASEURL);
+
 
 
 app.set("view engine", "ejs");
@@ -57,11 +57,12 @@ app.use("/treatments", treatmentsRoutes);
 app.use("/treatments/:id/comments", commentRoutes);
 
 
+
 // ======================
 // LOCAL DEPLOYMENT CONFIGURATION
 // ======================
 // app.listen(3000, function(){
-//   console.log("ChemoTracker Server is listening!!!")
+//   console.log("Local ChemoTracker Server is listening!!!")
 // });
 
 
@@ -69,5 +70,5 @@ app.use("/treatments/:id/comments", commentRoutes);
 // //HEROKU CONFIGURATION
 // //======================
 app.listen(process.env.PORT, process.env.IP, function () {
-    console.log("ChemoTracker Server running!");
+    console.log("Heroku ChemoTracker Server listening!!!");
 });
