@@ -54,6 +54,17 @@ app.use("/treatments", treatmentsRoutes);
 app.use("/treatments/:id/comments", commentRoutes);
 
 
-app.listen(3000, function(){
-  console.log("ChemoTracker Server is listening!!!")
+//======================
+//LOCAL DEPLOYMENT CONFIGURATION
+//======================
+// app.listen(3000, function(){
+//   console.log("ChemoTracker Server is listening!!!")
+// });
+
+
+//======================
+//HEROKU CONFIGURATION
+//======================
+app.listen(process.env.PORT, process.env.IP, function () {
+    console.log("ChemoTracker Server running on Heroku!");
 });
