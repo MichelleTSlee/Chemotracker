@@ -11,7 +11,7 @@ router.get("/", function(req, res){
     if(err){
       console.log(err);
     } else {
-      res.render("treatments/treatments", {treatment: treatment});
+      res.render("treatments/treatments", {treatment: treatment, page: "treatments"});
     }
   });
 });

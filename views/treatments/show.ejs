@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-<div class="container">
+
   <div class="row">
     <div class="col-md-3">
       <p class="lead">ChemoTracker</p>
@@ -37,9 +37,7 @@
                 <p>
                   <%= comment.text %>
                 </p>
-                <p>
-                  <%= comment.author.username %>
-                </p>
+              
 
             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                 <a class="btn btn-xs btn-warning"
@@ -62,7 +60,7 @@
   </div>
 
 
-</div>
+
 
 
 
