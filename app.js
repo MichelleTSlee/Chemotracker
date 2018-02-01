@@ -59,17 +59,9 @@ app.use("/treatments/:id/comments", commentRoutes);
 
 
 
-// ======================
-// LOCAL DEPLOYMENT CONFIGURATION
-// ======================
-// app.listen(3000, function(){
-//   console.log("Local ChemoTracker Server is listening!!!")
-// });
-
-
 // //======================
-// //HEROKU CONFIGURATION
+// //SERVER CONFIGURATION
 // //======================
 app.listen(port, function () {
-    console.log("Heroku ChemoTracker Server listening!!!");
+    console.log("ChemoTracker listening!!!");
 });
