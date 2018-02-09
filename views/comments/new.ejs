@@ -2,15 +2,16 @@
 
   <div class="row">
     <h1 style="text-align: center">Add New Comment for <%= treatment.date %> Chemo session </h1>
-    <div style="width:30%; margin: 25px auto;"><!-- This is 25 on top
+    <div style="width:50%; margin: 25px auto;"><!-- This is 25 on top
     & bottom & auto left & right-->
 
       <form  action="/treatments/<%= treatment._id %>/comments" method="POST">
         <div class="form-group">
-            <input class="form-control" name="comment[date]" placeholder="date" />
+            <input type = "form control" class="input-mysize" name="comment[  daysSinceTreatment]" placeholder="Days since treatment ie Day 0 = treatment day, Day 1 = day after treatment etc"  />
         </div>
         <div class="form-group">
-            <input class="form-control" name="comment[text]" placeholder="text" />
+            <input type ="form control"  class="input-mysize"
+            name="comment[text]" placeholder="text" />
         </div>
         <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block">Log</button>

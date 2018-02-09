@@ -33,11 +33,11 @@
           <% treatment.comments.forEach(function(comment){ %>
             <div class="row">
               <div class="col-md-12">
-                <span class="pull-right"><%=comment.date %></span>
+                <span class="pull-right"><%=comment.  daysSinceTreatment %></span>
                 <p>
                   <%= comment.text %>
                 </p>
-              
+
 
             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                 <a class="btn btn-xs btn-warning"

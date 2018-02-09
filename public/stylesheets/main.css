@@ -21,4 +21,11 @@ h4 {
 
 #deleteForm {
   display: inline;
+
+}
+
+.input-mysize{
+  width: 500px;
+  height: 40px;
+
 }
