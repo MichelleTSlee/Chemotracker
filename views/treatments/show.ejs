@@ -1,20 +1,11 @@
 <% include ../partials/header %>
 
   <div class="row">
-    <div class="col-md-3">
-      <p class="lead">ChemoTracker</p>
-      <div class="list-group">
-        <li class="list-group-item active">Info 1</li>
-        <li class="list-group-item">Info 2</li>
-        <li class="list-group-item">Info 3</li>
-      </div>
-      </div>
-      <div class="col-md-9">
+      <div class="col-md-12">
         <div class="thumbnail">
             <img src= "https://cdn.pixabay.com/photo/2017/09/07/10/25/logo-2724481__340.png">
           <div class="caption-full">
             <h4>Date: <%= treatment.date %></h4>
-              <h5>Neutrophils: <%= treatment.neutrophils %></h3>
             <h5>Treatment: <%= treatment.description %></h3>
 
               <% if(currentUser && treatment.author.id.equals(currentUser._id)){ %>
@@ -33,7 +24,7 @@
           <% treatment.comments.forEach(function(comment){ %>
             <div class="row">
               <div class="col-md-12">
-                <span class="pull-right"><%=comment.  daysSinceTreatment %></span>
+                <span class="pull-right"><%=comment.date %></span>
                 <p>
                   <%= comment.text %>
                 </p>

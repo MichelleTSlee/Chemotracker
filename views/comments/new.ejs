@@ -1,17 +1,16 @@
 <% include ../partials/header %>
 
   <div class="row">
-    <h1 style="text-align: center">Add New Comment for <%= treatment.date %> Chemo session </h1>
-    <div style="width:50%; margin: 25px auto;"><!-- This is 25 on top
-    & bottom & auto left & right-->
+    <h1 style="text-align: center">Add New Side Effect for <%= treatment.date %> treatment </h1>
+    <div style="width:50%; margin: 25px auto;">
 
       <form  action="/treatments/<%= treatment._id %>/comments" method="POST">
         <div class="form-group">
-            <input type = "form control" class="input-mysize" name="comment[  daysSinceTreatment]" placeholder="Days since treatment ie Day 0 = treatment day, Day 1 = day after treatment etc"  />
+            <input type = "form control" class="input-mysize" name="comment[date]" placeholder="Date"  />
         </div>
         <div class="form-group">
             <input type ="form control"  class="input-mysize"
-            name="comment[text]" placeholder="text" />
+            name="comment[text]" placeholder="Treatment" />
         </div>
         <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block">Log</button>

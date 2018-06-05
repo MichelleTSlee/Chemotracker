@@ -18,14 +18,13 @@ router.get("/", function(req, res){
 
 //CREATE route - add new treatment to database
 router.post("/", middleware.isLoggedIn, function(req, res){
-   var neutrophils = req.body.neutrophils;
    var date = req.body.date;
    var description = req.body.description;
    var author = {
      id: req.user._id,
      username:  req.user.username
    };
-   var newTreatment = {date: date, description: description, neutrophils: neutrophils, author: author};
+   var newTreatment = {date: date, description: description, author: author};
    Treatment.create(newTreatment, function(err, newlyCreated){
    if(err){
       console.log(err);
