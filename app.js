@@ -29,7 +29,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 //Seed the Database
-seedDB();
+//seedDB();
 
 //======================
 //PASSPORT CONFIGURATION
