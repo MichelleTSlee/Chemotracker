@@ -1,27 +1,44 @@
 
-.thumbnail img {
-  width:25%;
-}
-
-.thumbnail_full img {
-  width:25%;
-}
-
 .thumbnail {
-  padding: 0;
+  margin-left: 25%;
+}
+
+.thumbnail_show {
+    width: 500px;
+    border: 2px solid lightgrey;
+    padding-left: 150px;
+    padding-right: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    margin-left: 30%;
+    margin-bottom: 5%;
+
+}
+
+.thumbnail img {
+  padding-top: 15%;
+
 }
 
 .thumbnail .caption-full {
   padding: 9px;
 }
 
+
 h4 {
   color: #46A3DE;
 }
 
+hr {
+  background-color: #005580;
+  height: 1px;
+  border: 0;
+}
+
+
 #deleteForm {
   display: inline;
-
 }
 
 .input-mysize{

@@ -1,5 +1,5 @@
 body {
-  background-color: #000;
+  background-color: #000000;
 }
 
 #landing-header {
@@ -39,15 +39,18 @@ body {
   animation: imageAnimation 50s linear infinite;
 }
 
+
+
+
 .slideshow li:nth-child(1) {
-  background-image:url( https://cdn.pixabay.com/photo/2017/10/26/17/52/abstract-2891890__340.jpg)
+  background-image:url( https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431__340.jpg)
 }
 .slideshow li:nth-child(2) {
-  background-image: url(https://cdn.pixabay.com/photo/2017/08/23/11/30/background-2672565__340.jpg);
-  animation-delay: 10s;
+  background-image: url(https://cdn.pixabay.com/photo/2017/06/20/18/01/background-2424150__340.jpg);
+  animation-delay: 5s;
 }
 .slideshow li:nth-child(3) {
-  background-image: url(https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431__340.jpg);
+  background-image: url(https://cdn.pixabay.com/photo/2017/10/26/17/52/abstract-2891890__340.jpg);
   animation-delay: 20s;
 }
 .slideshow li:nth-child(4) {
@@ -55,7 +58,7 @@ body {
   animation-delay: 30s;
 }
 .slideshow li:nth-child(5) {
-  background-image: url(https://cdn.pixabay.com/photo/2017/06/20/18/01/background-2424150__340.jpg);
+  background-image: url(https://cdn.pixabay.com/photo/2017/08/23/11/30/background-2672565__340.jpg);
   animation-delay: 40s;
 }
 
