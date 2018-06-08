@@ -1,6 +1,7 @@
 
 .thumbnail {
   margin-left: 25%;
+
 }
 
 .thumbnail_show {
@@ -10,7 +11,6 @@
     padding-right: 100px;
     padding-top: 50px;
     padding-bottom: 50px;
-
     margin-left: 30%;
     margin-bottom: 5%;
 
@@ -27,7 +27,11 @@
 
 
 h4 {
-  color: #46A3DE;
+  color: #e65c00;
+}
+
+h6 {
+  color: #009999;
 }
 
 hr {
