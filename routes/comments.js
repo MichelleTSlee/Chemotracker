@@ -18,7 +18,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 });
 
 ////CREATE  - add new comment to database
-router.post("/", middleware.isLoggedIn, function(req, res){
+router.post("/", middleware.checkTreatmentOwnership, function(req, res){
   //Find treatment by ID
   Treatment.findById(req.params.id, function(err, treatment){
     if(err){
