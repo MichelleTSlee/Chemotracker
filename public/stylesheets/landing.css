@@ -1,5 +1,5 @@
 body {
-  background-image:url( https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431__340.jpg);
+  background-image: url(https://cdn.pixabay.com/photo/2016/10/11/21/43/geometric-1732847__340.jpg);
   background-size: cover;
 }
 
@@ -40,11 +40,8 @@ body {
   animation: imageAnimation 50s linear infinite;
 }
 
-
-
-
 .slideshow li:nth-child(1) {
-  background-image:url( https://cdn.pixabay.com/photo/2017/10/26/17/52/abstract-2891890__340.jpg)
+  background-image: url(https://cdn.pixabay.com/photo/2017/10/26/17/52/abstract-2891890__340.jpg);
 }
 .slideshow li:nth-child(2) {
   background-image: url(https://cdn.pixabay.com/photo/2017/06/20/18/01/background-2424150__340.jpg);
@@ -73,14 +70,14 @@ body {
     animation-timing-function: ease-out;
   }
   20% {
-    opacity: 1
+    opacity: 1;
   }
   30% {
-    opacity: 0
+    opacity: 0;
   }
 }
 
 /* Older browser support - .no-cssanimations class added by modernizr */
 .no-cssanimations .slideshow li {
-	opacity: 1;
+  opacity: 1;
 }
